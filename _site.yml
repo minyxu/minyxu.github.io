@@ -9,3 +9,5 @@ navbar:
       href: about.html
     - text: "Network Graph"
       href: networks.html
+    - text: "Final Project"
+      href: final.html
