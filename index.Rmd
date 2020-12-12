@@ -2,4 +2,4 @@
 title: "Personal Website"
 ---
 
-Hello, I’m a graduate student in the Georgetown University, studying for my master degree on Data Science and Analytics. The purpose of this website is to create my personal portfolio from the class ANLY 503: Analytical Data Visualization, which is my major course in the Georgetown University. This website will include some of my homeworks and my final project.
+$\hspace{2em}Hello$, welcome to my personal website. I’m a graduate student in the Georgetown University, studying for my master degree on Data Science and Analytics. The purpose of this website is to create my personal portfolio from the class ANLY 503: Analytical Data Visualization, which is my major course in the Georgetown University. This website will include some of my homeworks and my final project.
