@@ -1,0 +1,11 @@
+name: "503 portfolio"
+output_dir: "."
+navbar:
+  title: "Personal Website"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About Me"
+      href: about.html
+    - text: "Network Graph"
+      href: networks.html

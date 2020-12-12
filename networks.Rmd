@@ -1,0 +1,57 @@
+---
+title: "Network Graph"
+---
+
+```{r, include=FALSE}
+data <- readxl::read_excel('data/State_to_State_Migrations_Table_2018.xls', skip = 4)
+data <- data[, -c(2:9)]
+n <- dim(data)[1]
+data <- data[1:(n-9),]
+head(data)
+```
+
+```{r, include=FALSE}
+# select the data of NY, TX, DC, and IA as the origin states
+library(tidyverse)
+states <- data[1][-c(1:5),]
+NY <- cbind(states, data[which(data[1,] == 'New York')][-c(1:5),])
+TX <- cbind(states, data[which(data[1,] == 'Texas')][-c(1:5),])
+DC <- cbind(states, data[which(data[1,] == 'District of Columbia')][-c(1:5),])
+IA <- cbind(states, data[which(data[1,] == 'Iowa')][-c(1:5),])
+
+```
+
+
+```{r, include=FALSE}
+# get the top 10 destinations
+NY10 <- NY[with(NY, order(sapply(NY[2], as.numeric), decreasing = T)),][1:10, ]
+TX10 <- TX[with(TX, order(sapply(TX[2], as.numeric), decreasing = T)),][1:10, ]
+DC10 <- DC[with(DC, order(sapply(DC[2], as.numeric), decreasing = T)),][1:10, ]
+IA10 <- IA[with(IA, order(sapply(IA[2], as.numeric), decreasing = T)),][1:10, ]
+```
+
+```{r, include=FALSE}
+# extract the data frame of 'source', 'target', and 'count'
+NY10 <- cbind(rep('New York', 10), NY10)
+TX10 <- cbind(rep('Texas', 10), TX10)
+DC10 <- cbind(rep('District of Columbia', 10), DC10)
+IA10 <- cbind(rep('Iowa', 10), IA10)
+colnames(NY10) <- c('source', 'target', 'count')
+colnames(TX10) <- c('source', 'target', 'count')
+colnames(DC10) <- c('source', 'target', 'count')
+colnames(IA10) <- c('source', 'target', 'count')
+df <- rbind(NY10, TX10, DC10, IA10)
+library(circlize)
+```
+
+```{r, fig.width=8, fig.height=8}
+chordDiagram(df, annotationTrack = "grid", directional = 1, direction.type = c("diffHeight", "arrows"),
+    link.arr.type = "big.arrow", diffHeight = -mm_h(2), 
+    preAllocateTracks = list(track.height = max(strwidth(unlist(dimnames(df))))))
+circos.track(track.index = 1, panel.fun = function(x, y) {
+    circos.text(CELL_META$xcenter, CELL_META$ylim[1], CELL_META$sector.index, 
+        facing = "clockwise", niceFacing = TRUE, adj = c(0, 0.5), cex = 0.5)
+}, bg.border = NA)
+```
+
+
