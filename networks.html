@@ -291,6 +291,9 @@ $(document).ready(function () {
 <li>
   <a href="networks.html">Network Graph</a>
 </li>
+<li>
+  <a href="final.html">Final Project</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -308,7 +311,8 @@ $(document).ready(function () {
 </div>
 
 
-<pre class="r"><code>chordDiagram(df, annotationTrack = &quot;grid&quot;, directional = 1, direction.type = c(&quot;diffHeight&quot;, &quot;arrows&quot;),
+<p><span class="math inline">\(\hspace{2em}In\)</span> this visualization, New York, Texas, District of Columbia, and Iowa are selected as the origin states (where people lived the previous year), and the top 10 destination states (current state) where the biggest relative numbers of people that moved from each of the origin states are selected. This graph is about the immigration between these stats.The arrows show the direction of immigration, and the width of the edges shows the volume of moving population.</p>
+<pre class="r"><code>chordDiagram(df, grid.col = mycolor, annotationTrack = &quot;grid&quot;, directional = 1, direction.type = c(&quot;diffHeight&quot;, &quot;arrows&quot;),
     link.arr.type = &quot;big.arrow&quot;, diffHeight = -mm_h(2), 
     preAllocateTracks = list(track.height = max(strwidth(unlist(dimnames(df))))))
 circos.track(track.index = 1, panel.fun = function(x, y) {

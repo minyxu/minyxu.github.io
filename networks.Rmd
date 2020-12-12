@@ -41,11 +41,18 @@ colnames(TX10) <- c('source', 'target', 'count')
 colnames(DC10) <- c('source', 'target', 'count')
 colnames(IA10) <- c('source', 'target', 'count')
 df <- rbind(NY10, TX10, DC10, IA10)
+
 library(circlize)
+library(viridis)
+
+mycolor <- viridis(28, alpha = 1, begin = 0, end = 1, option = "D")
+mycolor <- mycolor[sample(1:28)]
 ```
 
+$\hspace{2em}In$ this visualization, New York, Texas, District of Columbia, and Iowa are selected as the origin states (where people lived the previous year), and the top 10 destination states (current state) where the biggest relative numbers of people that moved from each of the origin states are selected. This graph is about the immigration between these stats.The arrows show the direction of immigration, and the width of the edges shows the volume of moving population.
+
 ```{r, fig.width=8, fig.height=8}
-chordDiagram(df, annotationTrack = "grid", directional = 1, direction.type = c("diffHeight", "arrows"),
+chordDiagram(df, grid.col = mycolor, annotationTrack = "grid", directional = 1, direction.type = c("diffHeight", "arrows"),
     link.arr.type = "big.arrow", diffHeight = -mm_h(2), 
     preAllocateTracks = list(track.height = max(strwidth(unlist(dimnames(df))))))
 circos.track(track.index = 1, panel.fun = function(x, y) {
